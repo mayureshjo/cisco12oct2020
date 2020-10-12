@@ -125,3 +125,12 @@ sudo docker  logs  ashuc1
 
 <img src="child.png">
 
+# Create custom docker images
+
+<img src="cimages.png">
+
+
+## Building docker image from dockerfile 
+
+
+<img src="dockerimg1.png">
