@@ -133,4 +133,73 @@ sudo docker  logs  ashuc1
 ## Building docker image from dockerfile 
 
 
+```
+docker build -t  python:ashuv1 .
+
+```
+
+## checking output 
+
+```
+ sudo docker run  -itd  --name  ashupyc1 python:ashuv1
+ 
+  183  sudo docker  logs  ashupyc1 
+  184  sudo docker  logs -f  ashupyc1 
+```
+
+
 <img src="dockerimg1.png">
+
+
+# Web server as open source
+
+<img src="web.png">
+
+## building nginx docker image
+
+<img src="nginxweb.png">
+
+## nginx container creation 
+
+```
+ sudo docker run -itd --name  ashuw1 -p  3322:80    nginx:ashuv1 
+ [ec2-user@ip-172-31-76-183 ashuhtmlapp]$ sudo docker ps
+CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS                  NAMES
+8959ff734c0f        nginx:ashuv1        "/docker-entrypoint.…"   3 minutes ago       Up 3 minutes        0.0.0.0:3322->80/tcp   ashuw1
+
+```
+
+## kill and remove all the containers
+
+```
+ 249  sudo docker kill  $(sudo  docker   ps  -q)
+  250  sudo docker  ps
+  251  sudo docker rm   $(sudo  docker   ps  -aq)
+```
+
+## systemd problem in docker  container 
+
+<img src="systemd.png">
+
+
+## create container and access it from any where
+
+```
+[ec2-user@ip-172-31-76-183 ashuhttpdinstall]$ sudo docker  run  -d  --name myapp -p 1234:80 http:v001  
+b38d7a029b4131c8b8e4976a7e84c9227eacc5621dbaa3e79b3bd1556c5d901f
+[ec2-user@ip-172-31-76-183 ashuhttpdinstall]$ sudo docker  ps
+CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS                  NAMES
+b38d7a029b41        http:v001           "/bin/sh -c '/usr/sb…"   4 seconds ago       Up 4 seconds        0.0.0.0:1234->80/tcp   myapp
+[ec2-user@ip-172-31-76-183 ashuhttpdinstall]$ curl https://ipinfo.io/json 
+{
+  "ip": "18.206.238.0",
+  "hostname": "ec2-18-206-238-0.compute-1.amazonaws.com",
+  "city": "Virginia Beach",
+  "region": "Virginia",
+  "country": "US",
+  "loc": "36.7957,-76.0126",
+  "org": "AS14618 Amazon.com, Inc.",
+  "postal": "23471",
+
+```
+
