@@ -1,1 +1,9 @@
-# cisco12oct2020
+# Docker getting started 
+
+## DNS understanding 
+
+<img src="dns.png">
+
+## VMS understanding 
+
+<img src="vms.png">
