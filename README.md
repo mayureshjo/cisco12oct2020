@@ -80,3 +80,48 @@
    42  history 
 ```
 
+## creating a container
+
+<img src="cc.png">
+
+## checking output of parent process
+
+```
+sudo docker  logs  ashuc1
+```
+## some more operations 
+
+```
+ 62  sudo docker  ps
+   63  sudo   docker  stop   ashuc1  tender_zhukovsky  
+   64  sudo docker  ps
+   65  sudo docker  ps -a
+   66  sudo docker  start  ashuc1
+   67  sudo docker  ps 
+
+```
+
+
+## docker stop / kill and rm 
+```
+  71  sudo docker  stop   ashuc1
+   72  sudo docker  start   ashuc1
+   73  sudo docker  ps
+   74  sudo docker  kill  ashuc1 
+   75  sudo docker  ps -a
+   76  clear
+   77  sudo docker  ps
+   78  sudo docker  ps -a
+   79  sudo docker  start  ashuc1
+   80  sudo docker  ps
+   81  sudo docker  ps -a
+   82  sudo docker  rm  b586e896b818   recursing_cannon 
+   83  sudo docker  ps -a
+   84  sudo docker  ps
+
+```
+
+## Docker child 
+
+<img src="child.png">
+
