@@ -30,6 +30,17 @@
 ## Install and start Docker application engine in amazon linux
 
 
+```
+   6  rpm  -q   docker
+    7  whoami
+    8  sudo  yum  install  docker 
+    9  history 
+   10  rpm  -q  docker 
+   11  docker  version 
+   12  sudo  systemctl   start  docker 
+   13  sudo  systemctl   status  docker 
+```
+
 <img src="dcinstall.png">
 
 ===
