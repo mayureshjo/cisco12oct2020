@@ -203,3 +203,25 @@ b38d7a029b41        http:v001           "/bin/sh -c '/usr/sb…"   4 seconds ago
 
 ```
 
+## Temporary container with CMD example 
+
+```
+ 314  sudo docker  build -t  alpine:test1  /home/ec2-user/cisco12oct2020/cmdexample1  
+  315  sudo docker images
+  316  sudo docker run -it --rm   alpine:test1  
+  317  sudo docker run -it --rm   alpine:test1   cal 
+  318  sudo docker run -it --rm   alpine:test1   ping 8.8.8.8
+  319  sudo docker run -it --rm   alpine:test1   
+
+```
+
+#  COntainer Restart policy 
+
+```
+sudo docker  run -d --name x22  --restart always  alpine ping fb.com
+
+```
+
+===
+<img src="restart.png">
+
