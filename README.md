@@ -37,3 +37,23 @@
 
 <img src="multiapp.png">
 
+## after building 
+
+```
+599  docker  run -d --name ashuc2  -p 9999:80  -e x=project1  ciscowebapp:12102020  
+  600  docker  run -d --name ashuc3  -p 9991:80  -e x=project2  ciscowebapp:12102020  
+  601  docker  ps
+  602  curl https://ipinfo.io/json 
+  603  docker  run -d --name ashuc4  -p 9992:80  -e x=project3  ciscowebapp:12102020  
+  604  docker  ps
+
+```
+
+# Docker image registires 
+
+<img src="reg.png">
+
+## image name reality 
+
+<img src="imgname.png">
+
