@@ -32,3 +32,8 @@
 
 [Ram and CPU] ('https://docs.docker.com/config/containers/resource_constraints/')
 
+
+# Dockerfile with Multiapp 
+
+<img src="multiapp.png">
+
