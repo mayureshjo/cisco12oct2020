@@ -102,6 +102,42 @@
   
   ```
   
+  ## across the bridge connection 
+  
+  ```
+   688  docker  exec -it x3  sh 
+  689  docker  network connect  
+  690  docker  network connect  ashubr2  x3
+  691  docker  exec -it x3  sh 
+  692  history 
+  693  docker  network disconnect  ashubr2  x3
+  694  docker  exec -it x3  sh 
+
+```
+
+
+## Removing bridges
+
+<img src="brrm.png">
+
+## Container networking models
+
+<img src="cn.png">
+
+## Container network drivers 
+
+<img src="driver.png">
+
+[docker macvlan] ('https://docs.docker.com/network/macvlan/')
+
+
+## Macvlan 
+
+<img src="macv.png">
+
+## Swarm with overlay network drivers
+
+<img src="overlay.png">
 
 
 
