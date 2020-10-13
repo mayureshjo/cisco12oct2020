@@ -140,4 +140,14 @@
 <img src="overlay.png">
 
 
+# Storage in Docker & Container 
 
+<img src="emp.png">
+
+## Docker engine storgae
+
+<img src="est.png">
+
+## Configure docker engine storage
+
+<img src="dest.png">
