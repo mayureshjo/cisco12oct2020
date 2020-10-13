@@ -151,3 +151,7 @@
 ## Configure docker engine storage
 
 <img src="dest.png">
+
+## a close to volume s
+
+<img src="volumes.png">
