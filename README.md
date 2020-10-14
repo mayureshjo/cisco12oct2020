@@ -105,3 +105,33 @@ systemctl enable  --now  docker  kubelet
 
 [k8s install] ('https://github.com/redashu/k8s')
 
+# app Deployment model 
+
+<img src="appdep.png">
+
+## Installing kubectl on LInux based clients 
+
+```
+   73  curl -LO "https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl"
+   74  ls
+   75  sudo mv  kubectl  /usr/bin/
+   76  sudo chmod +x /usr/bin/kubectl 
+
+```
+
+## Kubectl installation link 
+
+[kubectl]  ('https://kubernetes.io/docs/tasks/tools/install-kubectl/')
+
+
+
+
+## checking installation 
+
+```
+[ec2-user@ip-172-31-11-42 ~]$ kubectl  version --client 
+Client Version: version.Info{Major:"1", Minor:"20+", GitVersion:"v1.20.0-alpha.2", GitCommit:"ee297b6f4d78daaf2f71c78a05203698581ca40a", GitTreeState:"clean", BuildDate:"2020-10-13T18:56:04Z", GoVersion:"go1.15.2", Compiler:"gc", Platform:"linux/amd64"}
+
+```
+
+
