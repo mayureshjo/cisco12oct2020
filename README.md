@@ -63,3 +63,16 @@ export DOCKER_HOST="tcp://DockerHost:2375"
   835  docker  logs mywebui 
   
   ```
+
+# Container Orchestraion engine 
+
+<img src="carch.png">
+
+## K8s arch 
+
+<img src="k8sarch.png">
+
+## k8s worker side
+
+<img src="kubeproxy.png">
+
