@@ -257,4 +257,14 @@ Conditions:
 
 ````
 
+## more info 
 
+```
+ 559  kubectl explain  pods 
+  560  kubectl explain  pods.apiVersion  
+  561  kubectl explain  pods.metadata
+  562  kubectl explain  pods.spec
+  563  kubectl explain  pods.spec.containers
+  
+  ```
+  
