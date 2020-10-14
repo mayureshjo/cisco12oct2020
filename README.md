@@ -76,3 +76,32 @@ export DOCKER_HOST="tcp://DockerHost:2375"
 
 <img src="kubeproxy.png">
 
+
+# k8s cluster Deployment 
+
+<img src="k8sinstall.png">
+
+## Installation  of k8s cluster using kubeadm 
+
+## things to be install on master and minion both
+
+```
+[root@ip-172-31-78-86 ~]# cat  setup.sh 
+modprobe br_netfilter  #  to install and use CNI we need to enable kernel support
+echo '1' > /proc/sys/net/bridge/bridge-nf-call-iptables   #  for kube proxy support 
+swapoff  -a  #  not supported by kubeadm 
+cat  <<EOF  >/etc/yum.repos.d/kube.repo
+[kube]
+baseurl=https://packages.cloud.google.com/yum/repos/kubernetes-el7-x86_64
+gpgcheck=0
+EOF
+
+yum  install  docker  kubeadm  -y
+systemctl enable  --now  docker  kubelet 
+
+```
+
+## K8s installaion on any cloud  / vm
+
+[k8s install] ('https://github.com/redashu/k8s')
+
