@@ -268,3 +268,18 @@ Conditions:
   
   ```
   
+## Dry Run to create pod 
+
+```
+570  kubectl  run  ashupod2  --image=nginx --port 80  --dry-run=client -o yaml
+  571  kubectl  run  ashupod2  --image=nginx --port 80  --dry-run=client -o yaml  >ashupod2.yml
+  572  ls
+  573  kubectl apply -f ashupod2.yml 
+  574  kubectl get po 
+  575  kubectl  version 
+  576  history 
+  577  ls
+  578  cat ashupod2.yml 
+
+```
+
