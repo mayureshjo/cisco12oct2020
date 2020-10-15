@@ -48,7 +48,7 @@ mandnayapod1                 1/1     Running   0          5m45s   run=mandnayapo
 
 ## accessing web app from k8s client machine 
 
-<img src="k8sportf.png">
+<img src="kubeportf.png">
 
 ## Overall methods to access web app deployed on K8s 
 
