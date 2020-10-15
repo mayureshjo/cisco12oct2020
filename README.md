@@ -216,3 +216,28 @@ spec:
  ```
  
  
+## Deploy and check 
+
+```
+ 713  kubectl apply  -f ashurc1.yml 
+  714  kubectl get  rc -n ashu-space 
+  715  kubectl get  pod  -n ashu-space 
+  716  cat ashurc1.yml 
+  717  history 
+ashutoshhs-MacBook-Air:myapps fire$ kubectl get  pod  -n ashu-space  --show-labels 
+NAME              READY   STATUS    RESTARTS   AGE    LABELS
+ashu-rc-1-28lp2   1/1     Running   0          100s   x1=ashuapp11
+ashu-rc-1-5lqxl   1/1     Running   0          100s   x1=ashuapp11
+ashutoshhs-MacBook-Air:myapps fire$ kubectl get  pod  -n ashu-space  --show-labels  -o wide
+NAME              READY   STATUS    RESTARTS   AGE    IP                NODE                            NOMINATED NODE   READINESS GATES   LABELS
+ashu-rc-1-28lp2   1/1     Running   0          107s   192.168.238.215   ip-172-31-73-197.ec2.internal   <none>           <none>            x1=ashuapp11
+ashu-rc-1-5lqxl   1/1     Running   0          107s   192.168.219.218   ip-172-31-69-50.ec2.internal    <none>           <none>            x1=ashuapp11
+
+```
+
+## Expose to create service in K8s
+
+```
+kubectl expose  rc  ashu-rc-1 --port 1234 --target-port 80 --type NodePort   -n ashu-space 
+
+```
