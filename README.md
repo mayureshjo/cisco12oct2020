@@ -155,3 +155,29 @@
 ## a close to volume s
 
 <img src="volumes.png">
+
+## Deployment with LoadBalancer service
+
+```
+ashutoshhs-MacBook-Air:myapps fire$ kubectl apply  -f  multiapp.yml 
+deployment.apps/ashumultidep created
+ashutoshhs-MacBook-Air:myapps fire$ 
+ashutoshhs-MacBook-Air:myapps fire$ 
+ashutoshhs-MacBook-Air:myapps fire$ kubectl  get  deploy -n ashu-space 
+NAME           READY   UP-TO-DATE   AVAILABLE   AGE
+ashumultidep   1/1     1            1           10s
+ashutoshhs-MacBook-Air:myapps fire$ kubectl  get  po  -n ashu-space 
+NAME                           READY   STATUS    RESTARTS   AGE
+ashumultidep-8c659d8b4-svct8   1/1     Running   0          19s
+ashutoshhs-MacBook-Air:myapps fire$ 
+ashutoshhs-MacBook-Air:myapps fire$ 
+ashutoshhs-MacBook-Air:myapps fire$ kubectl expose  deployment ashumultidep --type LoadBalancer --port 1122 --target-port 80   -n ashu-space 
+service/ashumultidep exposed
+ashutoshhs-MacBook-Air:myapps fire$ kubectl scale  deployment  ashumultidep  --replicas=5  -n ashu-space 
+deployment.apps/ashumultidep scaled
+ashutoshhs-MacBook-Air:myapps fire$ 
+
+
+```
+
+
