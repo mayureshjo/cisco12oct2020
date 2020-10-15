@@ -55,5 +55,85 @@ mandnayapod1                 1/1     Running   0          5m45s   run=mandnayapo
 <img src="access.png">
 
 
+# Services in K8s 
+
+<img src="services.png">
+
+## Example of NodePort service yaml 
+
+```
+ashutoshhs-MacBook-Air:myapps fire$ cat  ashungsvc.yml 
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: null
+  labels:   #  label of service and this is not used by service this is for any other k8s api whosoever want to connect svc
+    app: ashusvc1
+  name: ashusvc1  #  name of service 
+spec:
+  ports:
+  - name: 1234-80  # name of servce port 
+    port: 1234  #  service port that will be binded with service IP 
+    protocol: TCP  
+    targetPort: 80  #  port of pod running application 
+  selector:   #  to find pod using labels 
+    run: ashuwebpod1  # this label is same as pod label 
+  type: NodePort  #  type of service we created 
+status:
+  loadBalancer: {}
+
+```
+
+## checking services
+
+```
+ashutoshhs-MacBook-Air:myapps fire$ kubectl  get  service 
+NAME             TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)          AGE
+ashusvc1         NodePort    10.107.4.189     <none>        1234:32186/TCP   2m18s
+karan-webpod1    NodePort    10.102.24.22     <none>        1234:30565/TCP   91s
+kubernetes       ClusterIP   10.96.0.1        <none>        443/TCP          22h
+mamtapod1        NodePort    10.104.108.119   <none>        1234:31218/TCP   2m14s
+mandakinisrvc1   NodePort    10.106.158.203   <none>        1236:31697/TCP   26s
+nm               NodePort    10.111.147.67    <none>        1234:30241/TCP   111s
+sushilsc2        NodePort    10.102.159.247   <none>        1111:31025/TCP   7m23s
+tansvc1          NodePort    10.97.4.202      <none>        1235:31996/TCP   9m
+vipsvc1          NodePort    10.99.160.214    <none>        1234:31303/TCP   2m5s
+
+ashutoshhs-MacBook-Air:myapps fire$ kubectl  get  svc
+NAME             TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)          AGE
+ashusvc1         NodePort    10.107.4.189     <none>        1234:32186/TCP   2m24s
+karan-webpod1    NodePort    10.102.24.22     <none>        1234:30565/TCP   97s
+kubernetes       ClusterIP   10.96.0.1        <none>        443/TCP          22h
+mamtapod1        NodePort    10.104.108.119   <none>        1234:31218/TCP   2m20s
+mandakinisrvc1   NodePort    10.106.158.203   <none>        1236:31697/TCP   32s
+nm               NodePort    10.111.147.67    <none>        1234:30241/TCP   117s
+sushilsc2        NodePort    10.102.159.247   <none>        1111:31025/TCP   7m29s
+tansvc1          NodePort    10.97.4.202      <none>        1235:31996/TCP   9m6s
+vipsvc1          NodePort    10.99.160.214    <none>        1234:31303/TCP   2m11s
+
+```
+
+## More commands for service 
+```
+589  kubectl  get  service 
+  590  kubectl  get  po --show-labels 
+  591  kubectl  get  svc
+  592  history 
+  593  ¬
+  594  clear
+  595  kubectl  get  pod --show-labels 
+  596  cat  ashungsvc.yml 
+  597  ls
+  598  kubectl get  svc
+  599  kubectl  edit  svc  sushilsc2 
+  600  ls
+  601  vim ashungsvc.yml 
+  602  kubectl delete  svc  ashusvc1 
+  603  kubectl get  svc
+
+
+```
+
+
 
 
