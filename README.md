@@ -249,3 +249,96 @@ kubectl expose  rc  ashu-rc-1 --port 1234 --target-port 80 --type NodePort   -n 
 
 <img src="rollingupdates.png">
 
+## creating sample web app
+
+<img src="webapp.png">
+
+## OVerview of Deployment 
+
+```
+ 782  kubectl create  deployment  ashuapp  --image=dockerashu/ciscoapp:v001 --dry-run -o yaml >ashudep1.yml
+  783  history 
+  784  ls
+  785  history 
+  786  ls
+  787  vim ashudep1.yml  
+  788  history 
+  789  kubectl create  service  nodeport ashuapps1  --tcp 3344:80 --dry-run -o yaml  
+  790  kubectl create  service  nodeport ashuapps1  --tcp 3344:80 --dry-run -o yaml  >>ashudep1.yml 
+  791  history 
+  792  ls
+  793  vim ashudep1.yml 
+  794  cat ashudep1.yml 
+  795  vim ashudep1.yml 
+  796  kubectl delete  all --all -n ashu-space 
+  797  kubectl apply  -f ashudep1.yml 
+  798  kubectl get deployment -n ashu-space 
+  799  kubectl get pods  -n ashu-space 
+  800  kubectl get svc  -n ashu-space 
+  801  kubectl scale  deployment ashuapp --replicas=3  -n ashu-space 
+  802  kubectl get deployment -n ashu-space 
+  803  kubectl get pods  -n ashu-space 
+
+```
+
+## rolling updates and revision number history 
+
+```
+ 801  kubectl scale  deployment ashuapp --replicas=3  -n ashu-space 
+  802  kubectl get deployment -n ashu-space 
+  803  kubectl get pods  -n ashu-space 
+  804  history 
+  805  cat ashudep1.yml 
+  806  history 
+  807  kubectl get deploy -n ashu-space 
+  808  kubectl describe  deploy     ashuapp  -n ashu-space 
+  809  clear
+  810  ls
+  811  vim ashudep1.yml 
+  812  vim ashudep1.yml 
+  813  kubectl apply  -f ashudep1.yml 
+  814  kubectl describe deploy ashuapp -n ashu-space 
+  815  kubectl describe deploy ashuapp -n ashu-space 
+  816  kubectl describe deploy ashuapp -n ashu-space 
+  817  kubectl describe deploy ashuapp -n ashu-space 
+  818  vim ashudep1.yml 
+  819  kubectl apply  -f ashudep1.yml 
+  820  kubectl describe deploy ashuapp -n ashu-space 
+  821  history 
+  822  kubectl get po -n ashu-space 
+  823  kubectl describe deploy ashuapp -n ashu-space 
+  824  history 
+  825  kubectl describe deploy ashuapp -n ashu-space 
+  826  kubectl set image  deployment ashuapp  ciscoapp=dockerashu/ciscoapp:v003  -n ashu-space 
+  827  kubectl describe deploy ashuapp -n ashu-space 
+  828  history 
+  829  kubectl describe deploy ashuapp -n ashu-space 
+  830  history 
+ashutoshhs-MacBook-Air:myapps fire$ kubectl rollout  history  deployment  ashuapp -n ashu-space 
+deployment.apps/ashuapp 
+REVISION  CHANGE-CAUSE
+1         <none>
+2         <none>
+3         <none>
+
+
+```
+
+## Rollback in k8s deployment 
+
+```
+ashutoshhs-MacBook-Air:myapps fire$ kubectl rollout  history  deployment  ashuapp -n ashu-space 
+deployment.apps/ashuapp 
+REVISION  CHANGE-CAUSE
+1         <none>
+2         <none>
+3         <none>
+
+ashutoshhs-MacBook-Air:myapps fire$ kubectl rollout  undo  deployment  ashuapp --to-revision 1 -n ashu-space 
+deployment.apps/ashuapp rolled back
+ashutoshhs-MacBook-Air:myapps fire$ kubectl rollout  status  deployment  ashuapp  -n ashu-space 
+deployment "ashuapp" successfully rolled out
+ashutoshhs-MacBook-Air:myapps fire$ 
+
+```
+
