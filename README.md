@@ -134,6 +134,57 @@ vipsvc1          NodePort    10.99.160.214    <none>        1234:31303/TCP   2m1
 
 ```
 
+# Namespace in K8s 
 
+```
+ashutoshhs-MacBook-Air:myapps fire$ kubectl  get namespaces 
+NAME              STATUS   AGE
+default           Active   23h
+kube-node-lease   Active   23h
+kube-public       Active   23h
+kube-system       Active   23h
+
+```
+
+## checking all k8s component
+
+```
+ashutoshhs-MacBook-Air:myapps fire$ kubectl  get pod  --namespace  kube-system 
+NAME                                                   READY   STATUS    RESTARTS   AGE
+calico-kube-controllers-bcc6f659f-pbwjm                1/1     Running   1          23h
+calico-node-gjwqb                                      1/1     Running   1          23h
+calico-node-kllsg                                      1/1     Running   1          23h
+calico-node-tr8kc                                      1/1     Running   1          23h
+calico-node-wb9cw                                      1/1     Running   1          23h
+coredns-f9fd979d6-8kbx7                                1/1     Running   1          23h
+coredns-f9fd979d6-fcxlk                                1/1     Running   1          23h
+etcd-ip-172-31-78-86.ec2.internal                      1/1     Running   1          23h
+kube-apiserver-ip-172-31-78-86.ec2.internal            1/1     Running   1          23h
+kube-controller-manager-ip-172-31-78-86.ec2.internal   1/1     Running   1          23h
+kube-proxy-fmk7h                                       1/1     Running   1          23h
+kube-proxy-hmdk6                                       1/1     Running   1          23h
+kube-proxy-mxfxf                                       1/1     Running   1          23h
+kube-proxy-pt9vd                                       1/1     Running   1          23h
+kube-scheduler-ip-172-31-78-86.ec2.internal            1/1     Running   1          23h
+
+```
+
+## Points to remember a POD 
+
+```
+
+>  scalling of POds --  
+> 
+> Important: Pod can't be scaled  -- Problem 1 
+> 
+>   Problem 2  :  node where your pod is running is gone /down
+> 
+>        pod will not be deleted or reschedule it immediately 
+> 
+>    after pod-eviction time pod will be terminated but won't be rescheduled 
+> 
+> 
+
+```
 
 
