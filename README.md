@@ -241,3 +241,11 @@ ashu-rc-1-5lqxl   1/1     Running   0          107s   192.168.219.218   ip-172-3
 kubectl expose  rc  ashu-rc-1 --port 1234 --target-port 80 --type NodePort   -n ashu-space 
 
 ```
+
+
+# Deployment in k8s 
+
+## rolling updates 
+
+<img src="rollingupdates.png">
+
