@@ -187,4 +187,32 @@ kube-scheduler-ip-172-31-78-86.ec2.internal            1/1     Running   1      
 
 ```
 
+# replication Controller
 
+```
+apiVersion: v1
+kind: ReplicationController
+metadata:
+ name: ashu-rc-1
+ namespace: ashu-space
+ labels:
+  x: ashurc11  #  this is label of RC not label of Pod
+
+spec:
+ replicas: 2  #  no of pod for application
+ template:  # RC will be using template to create PODS
+  metadata:
+   name: mypod1  # this will not be used so RC will give some random name 
+   labels:    #  label of both the pod will be same
+    x1: ashuapp11 
+
+  spec:
+   containers:
+   - image: nginx
+     name: ashuc1
+     ports:
+     - containerPort: 80
+     
+ ```
+ 
+ 
