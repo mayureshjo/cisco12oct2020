@@ -19,7 +19,10 @@ spec:
     - containerPort: 3306
     env:      #  using env in k8s 
     - name: MYSQL_ROOT_PASSWORD  # its a predefine keyword in mysql docker image 
-      value: Cisco@123
+      valueFrom:
+       secretKeyRef:
+        name: ashudbpass  # name of secret
+        key: p # key of secret
     volumeMounts:
     - name: ashudbvol
       mountPath: /var/lib/mysql/
