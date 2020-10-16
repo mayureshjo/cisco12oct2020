@@ -139,8 +139,123 @@ ashutoshhs-MacBook-Air:myapps fire$
 
 ```
 
+# HostPath volume 
 
+```
+ashutoshhs-MacBook-Air:myapps fire$ cat  hostpath1.yml 
+apiVersion: v1
+kind: Pod
+metadata:
+  creationTimestamp: null
+  labels:
+    run: ashuemp1
+  name: ashuemp1
+  namespace: ashu-space  #  updating namespace 
+spec:
+  nodeName: ip-172-31-69-50.ec2.internal #  static pod scheduling 
+  volumes:
+  - name: ashuvol2
+    hostPath:
+     path: /etc
+     type: Directory
+ 
+  containers:
+  - image: alpine
+    name: ashuemp1
+    command: ["/bin/sh","-c","ping 8.8.8.8"]  # use of command is to replace entrypoint default process
+    volumeMounts:
+    - name: ashuvol2 # name of volume created above 
+      mountPath: /mnt/cisco # location under alpine container 
+    resources: {}
+  dnsPolicy: ClusterFirst
+  restartPolicy: Always
+status: {}
 
+```
 
+## cross checking hostpath volume
 
+<img src="hostpath.png">
 
+## POrtainer using hostpath VOlume 
+
+```
+ashutoshhs-MacBook-Air:myapps fire$ cat  portainer.yml 
+apiVersion: v1
+kind: Pod
+metadata:
+  creationTimestamp: null
+  labels:
+    run: ashuemp1
+  name: ashuemp1
+  namespace: ashu-space  #  updating namespace 
+spec:
+  nodeName: ip-172-31-69-50.ec2.internal #  static pod scheduling 
+  volumes:
+  - name: ashuvol2
+    hostPath:
+     path: /var/run/docker.sock
+     type: Socket
+ 
+  containers:
+  - image: portainer/portainer
+    name: ashuemp1
+    ports:
+    - containerPort: 9000
+    volumeMounts:
+    - name: ashuvol2
+      mountPath: /var/run/docker.sock 
+    resources: {}
+  dnsPolicy: ClusterFirst
+  restartPolicy: Always
+status: {}
+
+```
+
+## access the page
+
+```
+ashutoshhs-MacBook-Air:myapps fire$ kubectl apply  -f  portainer.yml  
+pod/ashuemp1 created
+ashutoshhs-MacBook-Air:myapps fire$ kubectl get po -n ashu-space 
+NAME       READY   STATUS    RESTARTS   AGE
+ashuemp1   1/1     Running   0          7s
+ashutoshhs-MacBook-Air:myapps fire$ kubectl expose  pod ashuemp1  --type NodePort --port 8811 --target-port 9000 -n ashu-space 
+service/ashuemp1 exposed
+ashutoshhs-MacBook-Air:myapps fire$ kubectl get svc -n ashu-space 
+NAME       TYPE       CLUSTER-IP      EXTERNAL-IP   PORT(S)          AGE
+ashuemp1   NodePort   10.102.184.80   <none>        8811:30107/TCP   8s
+
+```
+
+# Wordpress deployment for NFS data storage
+
+```
+ashutoshhs-MacBook-Air:wordpress fire$ cat ashudb.yml 
+apiVersion: v1
+kind: Pod
+metadata:
+  creationTimestamp: null
+  labels:
+    run: ashumydb  # for safer side using myDB as label 
+  name: mydb
+  namespace: ashu-space 
+spec:
+  volumes:
+  - name: ashudbvol
+    nfs:
+     server: 172.31.11.42
+     path: /data/ec2-user 
+  containers:
+  - image: mysql:5.7
+    name: mydb
+    ports:
+    - containerPort: 3306
+    volumeMounts:
+    - name: ashudbvol
+      mountPath: /var/lib/mysql/
+    resources: {}
+  dnsPolicy: ClusterFirst
+  restartPolicy: Always
+
+```
