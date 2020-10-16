@@ -1,0 +1,48 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: ashuapp
+  name: ashuapp  # name of deployment 
+  namespace: ashu-space  # namespace info 
+spec:
+  replicas: 3   #  one pod will be created
+  selector:
+    matchLabels:
+      app: ashuapp
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: ashuapp   # these are labels of POD 
+    spec:
+      containers:
+      - image: dockerashu/ciscoapp:v002
+        name: ciscoapp
+        resources: {}
+status: {}
+
+---
+
+
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: null
+  labels:
+    app: ashuapps1
+  name: ashuapps1
+  namespace: ashu-space   # namespace info 
+spec:
+  ports:
+  - name: 3344-80
+    port: 3344
+    protocol: TCP
+    targetPort: 80
+  selector:
+    app: ashuapp   # must match label of PODs 
+  type: NodePort
+status:
+  loadBalancer: {}

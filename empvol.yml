@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  creationTimestamp: null
+  labels:
+    run: ashuemp1
+  name: ashuemp1
+  namespace: ashu-space  #  updating namespace 
+spec:
+  volumes:
+  - name: ashuvol11 # name of volume 
+    emptyDir: {} 
+  containers:
+  - image: alpine
+    name: ashuemp1
+    command: ["/bin/sh","-c","ping 8.8.8.8"]  # use of command is to replace entrypoint default process
+    volumeMounts:
+    - name: ashuvol11 # name of volume created above 
+      mountPath: /mnt/cisco # location under alpine container 
+    resources: {}
+  dnsPolicy: ClusterFirst
+  restartPolicy: Always
+status: {}

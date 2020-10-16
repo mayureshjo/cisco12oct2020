@@ -1,0 +1,18 @@
+apiVersion: v1 # apiversion for pod and for any other resource in k8s apiversion may be diff
+kind: Pod  #  just a category like pod there are many more 
+metadata:   #  info about  kind 
+  namespace: ashu-space
+  creationTimestamp: null  # time stamp 
+  labels:  #  putting  label so that service can select this pod for traffic forwarding 
+    run: ashuwebpod1  #  key: value pair 
+  name: ashuwebpod1  # name of kind 
+spec:   #  is all about application --> container / storage / security / conf / resource  
+  containers:
+  - image: nginx
+    name: ashuwebpod1
+    ports:
+    - containerPort: 80
+    resources: {}
+  dnsPolicy: ClusterFirst
+  restartPolicy: Always
+status: {}

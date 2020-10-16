@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Pod 
+metadata:
+ name: ashu-pod1  #  this is for name of pod 
+ labels:
+  x: ashuapp  #  this is label of my pod
+
+spec:  #  this is for defining information about container 
+ containers:
+ - image: dockerashu/ciscowebapps:12102020  #  image from docker hub 
+   name: ashuc1 #  name of container 
+   ports:
+   - containerPort: 80 
+   env:  #  to define env var in pod file 
+   - name: x  # key 
+     value: project3  #  value 
+     

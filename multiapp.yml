@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: ashumultidep
+  name: ashumultidep
+  namespace: ashu-space 
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ashumultidep
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: ashumultidep
+    spec:
+      containers:
+      - image: dockerashu/ciscowebapps:12102020
+        name: ciscowebapps
+        env:  # defining env var section of app 
+        - name: x
+          value: project2  
+        resources: {}
+status: {}
