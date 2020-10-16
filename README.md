@@ -259,3 +259,15 @@ spec:
   restartPolicy: Always
 
 ```
+
+## storing db password in k8s secrets
+
+```
+ 427  kubectl  create  secret  generic  ashudbpass  --from-literal  p=Cisco@123 -n ashu-space 
+  428  kubectl get  secrets  -n ashu-space 
+  429  vim  ashudb.yml 
+  430  vim  ashudb.yml 
+  431  kubectl describe secrets  ashudbpass -n ashu-space 
+  ```
+  
+  
