@@ -1,0 +1,29 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  creationTimestamp: null
+  labels:
+    run: ashumydb  # for safer side using myDB as label 
+  name: mydb
+  namespace: ashu-space 
+spec:
+  volumes:
+  - name: ashudbvol
+    nfs:
+     server: 172.31.11.42
+     path: /data/ec2-user 
+  containers:
+  - image: mysql:5.7
+    name: mydb
+    ports:
+    - containerPort: 3306
+    env:      #  using env in k8s 
+    - name: MYSQL_ROOT_PASSWORD  # its a predefine keyword in mysql docker image 
+      value: Cisco@123
+    volumeMounts:
+    - name: ashudbvol
+      mountPath: /var/lib/mysql/
+    resources: {}
+  dnsPolicy: ClusterFirst
+  restartPolicy: Always
+status: {}
